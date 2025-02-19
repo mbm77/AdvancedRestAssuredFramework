@@ -39,7 +39,7 @@ public class BookingTestScenarios extends BookingAPIs {
 			expectedValueMap.put("booking.depositpaid", createBooking.getDepositpaid());
 			expectedValueMap.put("booking.bookingdates.checkin", createBooking.getBookingdates().getCheckin());
 			expectedValueMap.put("booking.bookingdates.checkout", createBooking.getBookingdates().getCheckout());
-			expectedValueMap.put("booking.additionalneed", createBooking.getAdditionalneeds());
+			expectedValueMap.put("booking.additionalneeds", createBooking.getAdditionalneeds());
 
 			if (createBooking.getScenarioId().equalsIgnoreCase("CreateBooking_WithoutID")) {
 				expectedValueMap.remove("firstname");
