@@ -29,7 +29,8 @@ public class ExtentReportManager {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String formattedTime = dateTimeFormatter.format(localDateTime);
-		String reportName = "TestReport" + formattedTime + ".html";
+		//String reportName = "TestReport" + formattedTime + ".html";
+		String reportName = "ExtentReport.html";
 		return reportName;
 	}
 
