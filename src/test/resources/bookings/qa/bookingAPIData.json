@@ -1,0 +1,9 @@
+{
+"getBookingIds":"https://restful-booker.herokuapp.com/booking",
+"createbooking":"https://restful-booker.herokuapp.com/booking/",
+"getBooking":"https://restful-booker.herokuapp.com/booking/",
+"getAccessToken":"https://restful-booker.herokuapp.com/auth",
+"updateBooking":"https://restful-booker.herokuapp.com/booking/",
+"partialUpdateBooking":"https://restful-booker.herokuapp.com/booking/",
+"deleteBooking":"https://restful-booker.herokuapp.com/booking/"
+}

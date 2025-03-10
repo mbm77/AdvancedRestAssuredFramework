@@ -3,11 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bookings.BookingTests">
+      <class name="bookings.WireMockRestAssuredTestNG">
         <methods>
-          <include name="createBookingAndVerifyResponse"/>
+          <include name="testSlowResponse"/>
+          <include name="testGetUser"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+          <include name="testCreateUser"/>
+          <include name="testInternalServerError"/>
         </methods>
-      </class> <!-- bookings.BookingTests -->
+      </class> <!-- bookings.WireMockRestAssuredTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

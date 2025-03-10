@@ -1,35 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-19T10:00:25 IST" name="Suite" finished-at="2025-02-19T10:00:53 IST" duration-ms="28291">
+  <suite started-at="2025-03-07T01:12:56 IST" name="Suite" finished-at="2025-03-07T01:13:15 IST" duration-ms="18833">
     <groups>
     </groups>
-    <test started-at="2025-02-19T10:00:25 IST" name="Test" finished-at="2025-02-19T10:00:53 IST" duration-ms="28291">
-      <class name="bookings.BookingTestScenarios">
-        <test-method signature="createBookingAndVerifyResponse(payload.CreateBooking)[pri:0, instance:bookings.BookingTestScenarios@223d2c72]" started-at="2025-02-19T10:00:31 IST" name="createBookingAndVerifyResponse" data-provider="BookingDataScenarioExcel" finished-at="2025-02-19T10:00:46 IST" duration-ms="14246" status="PASS">
+    <test started-at="2025-03-07T01:12:56 IST" name="Test" finished-at="2025-03-07T01:13:15 IST" duration-ms="18833">
+      <class name="com.mbm.bookingtests.BookingTests">
+        <test-method signature="getBookingIdsAndVerifyResponse(java.lang.reflect.Method)[pri:0, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:12:56 IST" name="getBookingIdsAndVerifyResponse" finished-at="2025-03-07T01:13:02 IST" duration-ms="5617" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[CreateBooking(super=BasePojo(scenarioId=CreateBooking_EmptyPayload, scenarioDesc=Create booking with empty payload, expectedStatusCode=500, expectedErrorMessage=Internal Server Error), firstname=null, lastname=null, totalprice=null, depositpaid=null, bookingdates=null, additionalneeds=null)]]>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getBookingIdsAndVerifyResponse(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getBookingIdsAndVerifyResponse -->
+        <test-method signature="createBookingAndVerifyResponse(com.mbm.bookingpojos.Booking,java.lang.reflect.Method)[pri:1, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:04 IST" name="createBookingAndVerifyResponse" data-provider="BookingDataByPoiji" finished-at="2025-03-07T01:13:08 IST" duration-ms="4133" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Booking(firstname=mbm, lastname=mannepalli, totalprice=3442, depositpaid=true, bookingdates=BookingDates(checkin=2025-02-17, checkout=2025-02-18), additionalneeds=Breakfast)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.createBookingAndVerifyResponse(com.mbm.bookingpojos.Booking,java.lang.reflect.Method) throws com.fasterxml.jackson.databind.JsonMappingException,com.fasterxml.jackson.core.JsonProcessingException]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createBookingAndVerifyResponse -->
-        <test-method signature="createBookingAndVerifyResponse(payload.CreateBooking)[pri:0, instance:bookings.BookingTestScenarios@223d2c72]" started-at="2025-02-19T10:00:46 IST" name="createBookingAndVerifyResponse" data-provider="BookingDataScenarioExcel" finished-at="2025-02-19T10:00:53 IST" duration-ms="7821" status="PASS">
+        <test-method signature="getBookingDetailsAndVerifyResponse(java.lang.reflect.Method)[pri:2, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:08 IST" name="getBookingDetailsAndVerifyResponse" finished-at="2025-03-07T01:13:10 IST" duration-ms="1513" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[CreateBooking(super=BasePojo(scenarioId=CreateBooking_HappyPath, scenarioDesc=Create booking with expected request payload, expectedStatusCode=200, expectedErrorMessage=NO_DATA), firstname=John, lastname=Doe, totalprice=1000, depositpaid=false, bookingdates=BookingDates(checkin=2025-02-18, checkout=2025-02-25), additionalneeds=Breakfast)]]>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getBookingDetailsAndVerifyResponse(java.lang.reflect.Method)]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createBookingAndVerifyResponse -->
-      </class> <!-- bookings.BookingTestScenarios -->
+        </test-method> <!-- getBookingDetailsAndVerifyResponse -->
+        <test-method signature="getAccessTokenAndVerifyResponse(java.lang.reflect.Method)[pri:3, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:10 IST" name="getAccessTokenAndVerifyResponse" finished-at="2025-03-07T01:13:11 IST" duration-ms="1283" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getAccessTokenAndVerifyResponse(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getAccessTokenAndVerifyResponse -->
+        <test-method signature="getUpdateBookingAndVerifyResponse(java.lang.reflect.Method)[pri:4, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:11 IST" name="getUpdateBookingAndVerifyResponse" finished-at="2025-03-07T01:13:13 IST" duration-ms="1393" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getUpdateBookingAndVerifyResponse(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUpdateBookingAndVerifyResponse -->
+        <test-method signature="getPartialUpdateBooking(java.lang.reflect.Method)[pri:5, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:13 IST" name="getPartialUpdateBooking" finished-at="2025-03-07T01:13:14 IST" duration-ms="1264" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getPartialUpdateBooking(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPartialUpdateBooking -->
+        <test-method signature="getDeleteBooking(java.lang.reflect.Method)[pri:6, instance:com.mbm.bookingtests.BookingTests@6adbc9d]" started-at="2025-03-07T01:13:14 IST" name="getDeleteBooking" finished-at="2025-03-07T01:13:15 IST" duration-ms="1273" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.mbm.bookingtests.BookingTests.getDeleteBooking(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getDeleteBooking -->
+      </class> <!-- com.mbm.bookingtests.BookingTests -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>
