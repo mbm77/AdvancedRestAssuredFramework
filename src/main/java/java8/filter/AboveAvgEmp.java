@@ -13,6 +13,9 @@ public class AboveAvgEmp {
 		empList.add(new Employee(104, "yyt", 56000.00));
 
 
+
+		empList.add(new Employee(104, "yyt", 52000.00));
+
 		
 
 
