@@ -9,7 +9,7 @@ public class AboveAvgEmp {
 		List<Employee> empList = new ArrayList<>();
 		empList.add(new Employee(101, "mvm", 50000.00));
 		empList.add(new Employee(102, "hgh", 60000.00));
-		empList.add(new Employee(103, "fdg", 70000.00));
+		empList.add(new Employee(103, "fdg", 30000.00));
 		empList.add(new Employee(104, "yyt", 52000.00));
 		
 		double avgSalary = empList.stream().collect(Collectors.averagingDouble(emp -> emp.getSalary()));
