@@ -21,7 +21,7 @@ public class AboveAvgEmp {
 				.collect(Collectors.toList());
 		for (Employee emp : aboveAvgEmp) {
 			System.out.println(emp.getName());
-			System.out.println(emp.getName());
+			
 		}
 	}
 }
