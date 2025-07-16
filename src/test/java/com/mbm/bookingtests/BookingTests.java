@@ -150,7 +150,7 @@ public class BookingTests extends BookingAPIs {
 	@Test(priority = 6)
 	public void getDeleteBooking(Method m) {
 		Response response = deleteBooking(bookingId, accessToken);
-		Assert.assertEquals(response.statusCode(), 201);
+		Assert.assertEquals(response.statusCode(), 204);
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 	}
 
