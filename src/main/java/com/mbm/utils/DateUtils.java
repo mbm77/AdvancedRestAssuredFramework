@@ -1,9 +1,12 @@
 package com.mbm.utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
+
+	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
 
 	public static String getCheckinDate() {
 		return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -22,5 +25,9 @@ public class DateUtils {
 		LocalDate localDate = LocalDate.parse(inputDate, inputFormatter);
 
 		return localDate.format(outputFormatter);
+	}
+
+	public static String getCurrentTimeStamp() {
+		return LocalDateTime.now().format(dateTimeFormatter);
 	}
 }

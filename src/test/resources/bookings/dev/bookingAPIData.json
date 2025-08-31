@@ -1,5 +1,12 @@
 {
-"createbooking":"https://restful-booker.herokuapp.com/booking/",
-"getuser":"https://jsonplaceholder.typicode.com/posts/1"
+  "baseUrl": "https://restful-booker.herokuapp.com",
+  "endpoints": {
+    "getBookingIds": "/booking",
+    "createBooking": "/booking",
+    "getBooking": "/booking/{bookingId}",
+    "getAccessToken": "/auth",
+    "updateBooking": "/booking/{bookingId}",
+    "partialUpdateBooking": "/booking/{bookingId}",
+    "deleteBooking": "/booking/{bookingId}"
+  }
 }
-

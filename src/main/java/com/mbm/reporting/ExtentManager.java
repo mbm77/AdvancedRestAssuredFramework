@@ -1,5 +1,7 @@
 package com.mbm.reporting;
 
+import java.util.Objects;
+
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentManager {
@@ -16,7 +18,10 @@ public class ExtentManager {
 	}
 	
 	public static void setExtentTest(ExtentTest extentTest) {
-		extTest.set(extentTest);
+		if(Objects.nonNull(extentTest)) {
+			extTest.set(extentTest);
+		}
+		
 	}
 	
 	public static void unload() {

@@ -1,12 +1,12 @@
 package java8.filter;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 
 /**** Reverse a String *****/
 class ReverseAString {
@@ -248,7 +248,17 @@ class PossibleSubstrings {
 
 }
 
-
+class RandomString {
+	public void generateRandomString() {
+		String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			sb.append(str.charAt(random.nextInt(str.length())));
+		}
+		System.out.println(sb.toString());
+	}
+}
 
 public class StringFunctionPractice {
 	public static void main(String[] args) {

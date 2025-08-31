@@ -5,14 +5,20 @@ import static com.mbm.utils.HandlingNullValuesInBuilderPattern.handleNoDataBoole
 import static com.mbm.utils.HandlingNullValuesInBuilderPattern.handleNoDataInteger;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FileUtils;
 import org.testng.annotations.DataProvider;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mbm.bookingpojos.Booking;
 import com.mbm.bookingpojos.BookingDates;
 import com.mbm.bookingpojos.CreateBooking;
@@ -38,7 +44,7 @@ public class DataProviders {
 		return bookingData.iterator();
 	}
 
-	@DataProvider(name = "BookingDataByPoiji")
+	@DataProvider(name = "BookingDataByPoiji", parallel=false)
 	public static Iterator<Booking> getBookingDataUsingPoiji() {
 		// PoijiOptions option =
 		// PoijiOptions.PoijiOptionsBuilder.settings().addListDelimiter(";").build();
@@ -46,14 +52,18 @@ public class DataProviders {
 
 		// Convert Excel data to List of Booking objects
 		List<BookingExcel> bookingExcelList = Poiji.fromExcel(file, BookingExcel.class);
+		// System.out.println(bookingExcelList.size());System.exit(0);//4
 
 		// Use Streams to print data by calling toString() method on each BookingExcel
 		// object
-		//bookingExcelList.stream().forEach(booking -> System.out.println(booking.toString()));
+		// bookingExcelList.stream().forEach(booking ->
+		// System.out.println(booking.toString()));
 
 		// Convert BookingExcel to Booking POJOs and return the list
 		List<Booking> bookingList = bookingExcelList.stream().filter(BookingExcel -> BookingExcel.getEnabled() == true)
 				.map(BookingExcel::toBooking).collect(Collectors.toList());
+		// System.out.println("Size "+bookingList.size()+'
+		// '+bookingList);System.exit(0);
 		return bookingList.iterator();
 	}
 
@@ -125,4 +135,38 @@ public class DataProviders {
 		return createBooking;
 
 	}
+
+	@DataProvider(name = "bookingDataFromJsonFile")
+	public Object[][] bookingDataFromJsonFile() {
+	    String filePath = System.getProperty("user.dir") + "/src/test/resources/test-data/booking_data.json";
+	    File file = new File(filePath);
+
+	    try {
+	        if (!file.exists()) {
+	            throw new FileNotFoundException("Test data file not found at: " + file.getAbsolutePath());
+	        }
+
+	        String jsonData = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+	        ObjectMapper mapper = new ObjectMapper();
+	        List<Map<String, Object>> dataList = mapper.readValue(
+	                jsonData, new TypeReference<List<Map<String, Object>>>() {}
+	        );
+
+	        Object[][] data = new Object[dataList.size()][1];
+	        for (int i = 0; i < dataList.size(); i++) {
+	            data[i][0] = dataList.get(i);
+	        }
+	        return data;
+
+	    } catch (IOException e) {
+	        // Log with your reporting tool to make it visible in the report
+	        System.err.println("❌ Error reading booking data file: " + e.getMessage());
+	        e.printStackTrace();
+	        
+	        // Fail the test early by returning empty data or throwing a RuntimeException
+	        throw new RuntimeException("Failed to load booking test data from: " + filePath, e);
+	    }
+	}
+
+
 }
