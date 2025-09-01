@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 // Employee class
-class Employees {
+class Emp {
     private int id;
     private String name;
     private double salary;
 
-    public Employees(int id, String name, double salary) {
+    public Emp(int id, String name, double salary) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -38,15 +38,15 @@ class Employees {
 // Main class
 public class ListToMapEmp {
     public static void main(String[] args) {
-        List<Employees> empList = new ArrayList<>();
-        empList.add(new Employees(101, "king", 50000.00));
-        empList.add(new Employees(102, "mbm", 60000.00));
-        empList.add(new Employees(103, "java", 70000.00));
-        empList.add(new Employees(104, "hero", 55000.00));
+        List<Emp> empList = new ArrayList<>();
+        empList.add(new Emp(101, "king", 50000.00));
+        empList.add(new Emp(102, "mbm", 60000.00));
+        empList.add(new Emp(103, "java", 70000.00));
+        empList.add(new Emp(104, "hero", 55000.00));
 
         // Convert List<Employee> to Map<Integer, String>
         Map<Integer, String> empMap = empList.stream()
-                .collect(Collectors.toMap(Employees::getId, Employees::getName));
+                .collect(Collectors.toMap(Emp::getId, Emp::getName));
 
         System.out.println("Employee Map (id -> name): " + empMap);
     }
