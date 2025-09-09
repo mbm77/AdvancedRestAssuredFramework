@@ -261,7 +261,18 @@ class RandomString {
 }
 
 public class StringFunctionPractice {
+	 public static void displaySubstr() {
+        String str = "abcdefgh";
+        for(int i=0;i<str.length();i++){
+            for(int j=i+1;j<=str.length();j++){
+             String subStr = str.substring(i,j);
+              System.out.println(subStr);
+            }
+        }
+    
+    }
 	public static void main(String[] args) {
-
+displaySubstr();
 	}
 }
+
