@@ -11,7 +11,6 @@ public class AboveAvgEmp {
 		empList.add(new Employee(102, "hgh", 60000.00));
 		empList.add(new Employee(103, "fdg", 30000.00));
 		empList.add(new Employee(104, "yyt", 55000.00));
-		
 		double avgSalary = empList.stream().collect(Collectors.averagingDouble(emp -> emp.getSalary()));
 
 		List<Employee> aboveAvgEmp = empList.stream().filter(map -> map.getSalary() > avgSalary)
@@ -19,7 +18,6 @@ public class AboveAvgEmp {
 		for (Employee emp : aboveAvgEmp) {
 			System.out.println(emp.getName());
 			System.out.println(emp.getName());
-			
 			
 		}
 	}
