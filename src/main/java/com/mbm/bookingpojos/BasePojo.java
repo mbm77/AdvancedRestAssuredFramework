@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder // This makes sure fields are inherited in subclasses
 public class BasePojo {
-	@JsonIgnore
+	@JsonIgnore // exclude a field or method from JSON serialization and deserialization.
 	private String scenarioId;
 	@JsonIgnore
 	private String scenarioDesc;

@@ -17,7 +17,8 @@ class FilterMapByKeys {
 		Map<Integer, String> resultMap = hmap.entrySet().stream().filter(entry -> entry.getKey() <= 22)
 				.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 		System.out.println(resultMap);
-
+		System.out.println(resultMap);
+		System.out.println(resultMap);
 	}
 
 }

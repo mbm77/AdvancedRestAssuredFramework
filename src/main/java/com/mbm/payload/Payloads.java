@@ -66,7 +66,7 @@ public class Payloads {
 		return Booking.builder().firstname(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.FIRSTNAME))
 				.lastname(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.LASTNAME))
 				.totalprice(RandomDataGenerator.getRandomNumber(2000, 4000))
-				.depositpaid(Stream.of(true, false).findAny().get())
+				.depositpaid(Stream.of(true, false).findAny().orElse(false))
 				.bookingdates(new BookingDates(DateUtils.getCheckinDate(), DateUtils.getCheckoutDate()))
 				.additionalneeds(RandomDataGenerator.getRandomAlphabets(10)).build();
 
@@ -82,7 +82,7 @@ public class Payloads {
 				.firstname(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.FIRSTNAME))
 				.lastname(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.LASTNAME))
 				.totalprice(RandomDataGenerator.getRandomNumber(2000, 4000))
-				.depositpaid(Stream.of(true, false).findAny().get())
+				.depositpaid(Stream.of(true, false).findAny().orElse(false))
 				.bookingdates(new BookingDates(DateUtils.getCheckinDate(), DateUtils.getCheckoutDate()))
 				.additionalneeds(RandomDataGenerator.getRandomAlphabets(10)).build();
 	}

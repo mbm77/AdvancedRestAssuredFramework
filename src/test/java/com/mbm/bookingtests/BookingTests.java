@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,21 +20,23 @@ import com.mbm.bookingpojos.Booking;
 import com.mbm.bookingpojos.BookingResponse;
 import com.mbm.bookingpojos.TokenCredentials;
 import com.mbm.payload.Payloads;
-import com.mbm.reporting.ExtentReportManager;
 import com.mbm.restutils.AssertionUtil;
+import com.mbm.tokenmanager.TokenManager;
 
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
-public class BookingTests extends BookingAPIs {
+public class BookingTests extends BaseTest{
 
 	public Integer bookingId;
 	public String accessToken;
 
-	// @BeforeMethod(alwaysRun = true)
-	public void setupTestLogging(Method method, Object[] testData) {
-		String testName = method.getName() + " - " + Arrays.toString(testData);
-		ExtentReportManager.createTest(testName);
+	@BeforeMethod
+	public void setUp() {
+		accessToken = TokenManager.getCookieToken();
 	}
+
+	BookingAPIs bookingAPIs = new BookingAPIs();
 
 	// @Test
 	public void createBooking() throws StreamReadException, DatabindException, IOException {
@@ -60,7 +63,9 @@ public class BookingTests extends BookingAPIs {
 	public void createBookingAndVerifyResponse(Booking requestPayload, Method m)
 			throws JsonMappingException, JsonProcessingException {
 		// Booking requestPayload = Payloads.getCreateBookingPayloadFromPojo();
-		Response response = createBooking(requestPayload);
+		// System.out.println(requestPayload);System.exit(0);
+		Response response = bookingAPIs.createBooking(requestPayload);
+		// response.prettyPrint(); System.exit(0);
 		bookingId = response.jsonPath().getInt("bookingid");
 		Payloads.booking = response.jsonPath().getObject("booking", Booking.class);
 		Map<String, Object> expectedValueMap = new HashMap<>();
@@ -106,26 +111,31 @@ public class BookingTests extends BookingAPIs {
 
 	@Test(priority = 0)
 	public void getBookingIdsAndVerifyResponse(Method m) {
-		Response response = getBookingIds();
+		Response response = bookingAPIs.getBookingIds();
 		Assert.assertEquals(response.statusCode(), 200);
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 	}
 
 	@Test(priority = 2)
-	public void getBookingDetailsAndVerifyResponse(Method m) {
-		Response response = getBookingDetails(bookingId);
+	public void getBookingDetailsAndVerifyResponse(Method m) throws IOException {
+		Response response = bookingAPIs.getBookingDetails(bookingId);
 		// response.prettyPrint();
-
-		Assert.assertEquals(response.jsonPath().getString("firstname"), "mbm");
-		Assert.assertEquals(response.jsonPath().getString("lastname"), "mannepalli");
+		// System.out.println(response.jsonPath().getString("firstname"));
+		// String path =
+		// System.getProperty("user.dir")+"/src/test/resources/schemas/getBookingSchema.json";
+		// String jsonSchema = FileUtils.readFileToString(new File(path),"UTF-8");
+		response.then().assertThat()
+				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/getBookingSchema.json"));
+		// Assert.assertEquals(response.jsonPath().getString("firstname"), "tamoto");
+		// Assert.assertEquals(response.jsonPath().getString("lastname"), "beto");
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 
 	}
 
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void getAccessTokenAndVerifyResponse(Method m) {
 		TokenCredentials tokenPayload = Payloads.getCreateTokenPayload();
-		Response response = getAccessToken(tokenPayload);
+		Response response = bookingAPIs.getAccessToken(tokenPayload);
 		accessToken = response.jsonPath().getString("token");
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 	}
@@ -133,7 +143,7 @@ public class BookingTests extends BookingAPIs {
 	@Test(priority = 4)
 	public void getUpdateBookingAndVerifyResponse(Method m) {
 		Booking updatedPayload = Payloads.getUpdateBookingPayloadFromPojo();
-		Response response = updateBooking(accessToken, bookingId, updatedPayload);
+		Response response = bookingAPIs.updateBooking(accessToken, bookingId, updatedPayload);
 		Payloads.booking = updatedPayload;
 		Assert.assertEquals(response.statusCode(), 200);
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
@@ -143,14 +153,16 @@ public class BookingTests extends BookingAPIs {
 	@Test(priority = 5)
 	public void getPartialUpdateBooking(Method m) {
 		Booking partiallyUpdatedBooking = Payloads.getPartialUpdateBookingPayloadFromPojo();
-		partiallyUpdateBooking(accessToken, bookingId, partiallyUpdatedBooking);
+		bookingAPIs.partiallyUpdateBooking(accessToken, bookingId, partiallyUpdatedBooking);
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 	}
 
 	@Test(priority = 6)
 	public void getDeleteBooking(Method m) {
-		Response response = deleteBooking(bookingId, accessToken);
+
+		Response response = bookingAPIs.deleteBooking(bookingId, accessToken);
 		Assert.assertEquals(response.statusCode(), 201);
+
 		System.out.println("✅ All Assertions Passed! in " + m.getName());
 	}
 

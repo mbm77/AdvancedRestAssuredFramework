@@ -28,7 +28,7 @@ public final class ExcelUtils {
 			int cols = sheet.getRow(0).getLastCellNum();
 			for (int i = 1; i <= rows; i++) {
 				map = new LinkedHashMap<>();
-				for (int j = 1; j < cols; j++) {
+				for (int j = 0; j < cols; j++) {
 					String key = sheet.getRow(0).getCell(j).getStringCellValue();
 					DataFormatter formatter = new DataFormatter();
 					String value = formatter.formatCellValue(sheet.getRow(i).getCell(j));
